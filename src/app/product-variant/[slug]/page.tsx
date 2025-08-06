@@ -6,7 +6,6 @@ import VariantSelector from "@/app/product-variant/[slug]/components/variant-sel
 import Footer from "@/components/common/footer";
 import Header from "@/components/common/header";
 import ProductList from "@/components/common/product-list";
-import { Button } from "@/components/ui/button";
 import { db } from "@/db";
 import { productTable, productVariantTable } from "@/db/schema";
 import { formatCentsToBRL } from "@/helpers/money";
@@ -70,24 +69,7 @@ const ProductVariantPage = async ({ params }: ProductVariantPageProps) => {
           </h3>
         </div>
 
-        
-          <ProductActions />
-        
-
-        <div className="flex flex-col gap-4 px-5">
-          <Button className="rounded-full" size="lg" variant="outline">
-            Adicionar à sacola
-          </Button>
-          <Button className="rounded-full" size="lg">
-            Comprar agora
-          </Button>
-        </div>
-
-        <div className="px-5">
-          <p className="text-shadow-amber-600">
-            {productVariant.product.description}
-          </p>
-        </div>
+        <ProductActions productVariantId={productVariant.id} />
 
         <ProductList title="Produtos similares" products={likelyProducts} />
 

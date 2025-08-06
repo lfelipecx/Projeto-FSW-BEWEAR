@@ -28,8 +28,8 @@ export const userRelations = relations(userTable, ({ many, one }) => ({
   shippingAddresses: many(shippingAddressTable),
   cart: one(cartTable, {
     fields: [userTable.id],
-    references: [cartTable.userId]
-  })
+    references: [cartTable.userId],
+  }),
 }));
 
 export const sessionTable = pgTable("session", {
@@ -91,7 +91,7 @@ export const productTable = pgTable("product", {
   id: uuid().primaryKey().defaultRandom(),
   categoryId: uuid("category_id")
     .notNull()
-    .references(() => categoryTable.id, { onDelete: "set null"}),
+    .references(() => categoryTable.id, { onDelete: "set null" }),
   name: text().notNull(),
   slug: text().notNull().unique(),
   description: text().notNull(),
@@ -110,7 +110,7 @@ export const productVariantTable = pgTable("product_variant", {
   id: uuid().primaryKey().defaultRandom(),
   productId: uuid("product_id")
     .notNull()
-    .references(() => productTable.id, { onDelete: "cascade"}),
+    .references(() => productTable.id, { onDelete: "cascade" }),
   name: text().notNull(),
   slug: text().notNull().unique(),
   color: text().notNull(),
@@ -156,13 +156,12 @@ export const shippingAddressRelations = relations(
       fields: [shippingAddressTable.userId],
       references: [userTable.id],
     }),
-     cart: one(cartTable, {
+    cart: one(cartTable, {
       fields: [shippingAddressTable.id],
       references: [cartTable.shippingAddressId],
     }),
   }),
 );
-
 
 export const cartTable = pgTable("cart", {
   id: uuid().primaryKey().defaultRandom(),
@@ -176,7 +175,7 @@ export const cartTable = pgTable("cart", {
   createdAt: timestamp("created_at").notNull().defaultNow(),
 });
 
-export const cartRelations = relations(cartTable, ({ one }) => ({
+export const cartRelations = relations(cartTable, ({ one, many }) => ({
   user: one(userTable, {
     fields: [cartTable.userId],
     references: [userTable.id],
@@ -185,6 +184,7 @@ export const cartRelations = relations(cartTable, ({ one }) => ({
     fields: [cartTable.shippingAddressId],
     references: [shippingAddressTable.id],
   }),
+  items: many(cartItemTable),
 }));
 
 export const cartItemTable = pgTable("cart_item", {

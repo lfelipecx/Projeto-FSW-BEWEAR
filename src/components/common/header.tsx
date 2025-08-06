@@ -15,16 +15,18 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "../ui/sheet";
+import Cart from "./cart";
 
 const Header = () => {
   const { data: session } = authClient.useSession(); //pegando o usuário logado
   return (
     <header className="flex items-center justify-between p-5">
-        <Link href="/">
-            <Image src="/logo.svg" alt="BEWEAR" width={100} height={24.14} />
-        </Link>
+      <Link href="/">
+        <Image src="/logo.svg" alt="BEWEAR" width={100} height={24.14} />
+      </Link>
 
-      <div className="flex items-center">
+      <div className="flex items-center gap-2">
+        <Cart />
         <Sheet>
           <SheetTrigger asChild>
             <Button variant="outline" size="icon">
@@ -58,8 +60,12 @@ const Header = () => {
                         </span>
                       </div>
                     </div>
-                    <Button variant="outline" size="icon" onClick={() => authClient.signOut()}>
-                        <LogOutIcon />
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      onClick={() => authClient.signOut()}
+                    >
+                      <LogOutIcon />
                     </Button>
                   </div>
                 </>

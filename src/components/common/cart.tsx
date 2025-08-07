@@ -19,7 +19,7 @@ import {
 import CartItem from "./cart-item";
 
 export const Cart = () => {
-  const { data: cart, isPending: cartIsLoading } = useQuery({
+  const { data: cart } = useQuery({
     queryKey: ["cart"],
     queryFn: () => getCart(),
   });
@@ -44,6 +44,7 @@ export const Cart = () => {
                     key={item.id}
                     id={item.id}
                     productName={item.productVariant.product.name}
+                    productVariantId={item.productVariant.id}
                     productVariantName={item.productVariant.name}
                     productVariantImageUrl={item.productVariant.imageUrl}
                     productVariantPriceInCents={

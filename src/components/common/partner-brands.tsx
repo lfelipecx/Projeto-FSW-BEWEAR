@@ -56,17 +56,7 @@ const PartnerBrands = ({ title }: PartnerBrandsProps) => {
                 <span className="text-sm font-medium truncate">New Balance</span>
             </div>
 
-            <div className="flex flex-col items-center gap-2">
-                <div className="rounded-3xl border-2 p-6">
-                    <Image
-                    src="/simple-icons-newBalance.png"
-                    alt="Nike"
-                    width={32}
-                    height={32}
-                    />
-                </div>
-                <span className="text-sm font-medium truncate">New Balance</span>
-            </div>
+           
       </div>
     </div>
   );
